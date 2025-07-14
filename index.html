@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to CMS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top left, #001f4d, #000000);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    .glow-title {
+      font-size: 3rem;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #00ccff;
+      text-shadow: 0 0 10px #00ccff, 0 0 20px #00ccff;
+    }
+
+    .button-container a {
+      text-decoration: none;
+    }
+
+    .start-button {
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      color: #fff;
+      background: transparent;
+      border: 2px solid #00ccff;
+      border-radius: 30px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00ccff;
+    }
+
+    .start-button:hover {
+      background-color: #00ccff;
+      color: #000;
+      box-shadow: 0 0 20px #00e6ff, 0 0 30px #00e6ff;
+    }
+
+    .nav {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #00ccff;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #00ccff;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .nav a:hover {
+      background-color: #00ccff;
+      color: #000;
+    }
+
+    /* Floating animated lights */
+    .bg-lights {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .bg-lights span {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: rgba(0, 255, 255, 0.2);
+      animation: float 10s linear infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Random light positions and delays */
+    .bg-lights span:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .bg-lights span:nth-child(2) { left: 25%; animation-delay: 2s; }
+    .bg-lights span:nth-child(3) { left: 40%; animation-delay: 4s; }
+    .bg-lights span:nth-child(4) { left: 60%; animation-delay: 1s; }
+    .bg-lights span:nth-child(5) { left: 80%; animation-delay: 3s; }
+    .bg-lights span:nth-child(6) { left: 90%; animation-delay: 6s; }
+  </style>
+
+  <!-- internal css for floating icons -->
+  <style>
+    .floating-bubble {
+         position: absolute;
+         bottom: 0;
+         font-size: 1.5rem;
+         opacity: 0.8;
+         animation: floatUp 4s linear forwards;
+         pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+         transform: translateY(0) scale(1);
+         opacity: 1;
+         }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <a href="./home.html">Home</a>
+    <a href="#about">About</a>
+    <a href="#help">Help</a>
+  </div>
+
+  <!-- Background Lights -->
+  <div class="bg-lights">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- Hero Content -->
+  <h1 class="glow-title">Welcome to CMS</h1>
+  <div class="button-container">
+    <a href="./home.html"><button class="start-button">Enter Dashboard</button></a>
+  </div>
+
+<!-- for floating annimation of icons -->
+  <script>
+  const emojis = ["📇", "✍️", "🗑️", "📞", "📬", "👤"];
+
+  function createBubble() {
+    const bubble = document.createElement("div");
+    bubble.classList.add("floating-bubble");
+    bubble.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    bubble.style.left = Math.random() * 100 + "vw";
+    bubble.style.fontSize = (Math.random() * 10 + 16) + "px";
+    document.body.appendChild(bubble);
+
+    setTimeout(() => {
+      bubble.remove();
+    }, 4000);
+  }
+
+  setInterval(createBubble, 1500);
+</script>
+
+</body>
+</html>
+
